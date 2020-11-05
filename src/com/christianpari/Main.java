@@ -1,7 +1,5 @@
 package com.christianpari;
 
-import Hotel.Floor.Floor;
-import Hotel.Floor.Room.Room;
 import Hotel.Hotel;
 
 import java.util.Scanner;

@@ -31,12 +31,31 @@ public class Hotel {
       return;
     }
 
+    displayRooms();
+  }
+
+  private void displayRooms() {
+    System.out.println("\nBelow are a list of our available rooms!");
+    System.out.println(this);
+
     interaction1();
   }
 
   private void interaction1() {
-    System.out.println("\nBelow are a list of our available rooms!");
-    System.out.println(this);
+    System.out.print("Please enter the room number you wish to rent: ");
+    String roomChosen = Integer.toString(scanner.nextInt());
+
+    for (Room room : allRooms) {
+      if (room.getRoomNumber().equals(roomChosen)) {
+        System.out.println("Renting room...");
+        break;
+      }
+
+      if ((allRooms.indexOf(room) == allRooms.size() - 1) && (!room.getRoomNumber().equals(roomChosen))) {
+        System.out.println("Please enter a valid room option!");
+        interaction1();
+      }
+    }
   }
 
   private void generateFloors(int numberOfFloors) {
@@ -47,11 +66,11 @@ public class Hotel {
         allRooms.add(room);
       }
     }
-  };
+  }
 
-//  public ArrayList<Room> getAllRooms() {
-//    return allRooms;
-//  }
+  public ArrayList<Room> getAllRooms() {
+    return allRooms;
+  }
 
   @Override
   public String toString() {
@@ -61,5 +80,5 @@ public class Hotel {
       hotelDetails = hotelDetails.concat(floor.toString());
     }
     return hotelDetails.trim();
-  };
+  }
 }

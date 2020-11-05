@@ -1,11 +1,9 @@
 package Hotel.Floor.Room;
 
-import java.util.ArrayList;
-
 public class Room {
-  protected String roomNumber;
-  protected int cost;
-  protected int sleepingAmount;
+  private String roomNumber;
+  private int cost;
+  private int sleepingAmount;
 
   public Room (
           String roomNumber,
@@ -25,18 +23,24 @@ public class Room {
     switch (roomType) {
       case "basic":
         roomTypeCost = 50;
+        break;
 
       case "suite":
         roomTypeCost = 75;
+        break;
 
       case "luxury":
         roomTypeCost = 100;
+        break;
 
       default:
         break;
-    }
+    };
 
-    cost = (floorFixed * (int)roomNumber.charAt(0)) + (roomFixed * (int)roomNumber.charAt(2) - 10) + fixedDeposit + roomTypeCost;
+    int firstIndex = Integer.parseInt("" + roomNumber.charAt(0) + "");
+    int lastIndex = Integer.parseInt("" + roomNumber.charAt(2) + "");
+
+    cost = (floorFixed * firstIndex) + (roomFixed * lastIndex - 10) + fixedDeposit + roomTypeCost;
   };
 
   private void setSleepAmount(String roomType) {
@@ -54,6 +58,8 @@ public class Room {
 
   @Override
   public String toString() {
-    return "" + roomNumber + "";
+    return "\nRoom " + roomNumber + ", cost per night: $" + cost;
   };
+
+  public String getRoomNumber() { return roomNumber; };
 }

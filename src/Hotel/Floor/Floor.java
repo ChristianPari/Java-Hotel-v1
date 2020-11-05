@@ -19,18 +19,23 @@ public class Floor {
   };
 
   private void generateRooms(int floorNum) {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 1; i <= 5; i++) {
       String roomNumber = Integer.toString((floorNum * 100 + i));
-      if (i <= 2) {
+
+      if (i <= 3) {
         Room room = new Basic(roomNumber, "basic");
         rooms.add(room);
-      } else if (i == 3) {
+      };
+
+      if (i == 4) {
         Room room = new Suite(roomNumber, "suite");
         rooms.add(room);
-      } else {
+      };
+
+      if (i == 5){
         Room room = new Luxury(roomNumber, "luxury");
         rooms.add(room);
-      }
+      };
     }
   };
 
@@ -43,11 +48,11 @@ public class Floor {
 
     for (Room room :
             rooms) {
-      floorDetails.append(room.toString() + ", ");
+      floorDetails.append(room.toString());
     };
 
     int lastIndex = floorDetails.length();
-    floorDetails.delete(lastIndex - 2, lastIndex - 1);
+    floorDetails.delete(lastIndex, lastIndex);
     floorDetails.append("\n");
 
     return floorDetails.toString();

@@ -43,6 +43,7 @@ public class Floor {
     return rooms;
   }
 
+  @Override
   public String toString() {
     StringBuilder floorDetails = new StringBuilder("Floor " + floorNum + ": ");
 

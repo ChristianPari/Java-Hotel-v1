@@ -1,6 +1,6 @@
 package com.christianpari;
 
-import Hotel.Hotel;
+import Hotel.HotelPari;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class Main {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    Hotel hotel = new Hotel(scanner, 2);
-    hotel.greet();
+    HotelPari hotelPari = new HotelPari(scanner, 2);
+    hotelPari.greet();
   }
 }

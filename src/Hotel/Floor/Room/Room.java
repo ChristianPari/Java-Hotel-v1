@@ -1,9 +1,12 @@
 package Hotel.Floor.Room;
 
+import Hotel.Customer.Customer;
+
 public class Room {
   private String roomNumber;
   private int cost;
   private int sleepingAmount;
+  public boolean isOccupied = false;
 
   public Room (
           String roomNumber,
@@ -13,6 +16,12 @@ public class Room {
     calculateCost(roomType);
     setSleepAmount(roomType);
   };
+
+  public boolean attemptCheckout(Customer customer) {
+    if (customer.getCashInCents() >= cost) { return true; }
+
+    return false;
+  }
 
   private void calculateCost(String roomType) {
     int floorFixed = 50;
@@ -40,7 +49,7 @@ public class Room {
     int firstIndex = Integer.parseInt("" + roomNumber.charAt(0) + "");
     int lastIndex = Integer.parseInt("" + roomNumber.charAt(2) + "");
 
-    cost = (floorFixed * firstIndex) + (roomFixed * lastIndex - 10) + fixedDeposit + roomTypeCost;
+    cost = ((floorFixed * firstIndex) + (roomFixed * lastIndex - 10) + fixedDeposit + roomTypeCost) * 100;
   };
 
   private void setSleepAmount(String roomType) {
@@ -58,8 +67,13 @@ public class Room {
 
   @Override
   public String toString() {
-    return "\nRoom " + roomNumber + ", cost per night: $" + cost;
+    String cost = Integer.toString(this.cost);
+    return "\nRoom " + roomNumber + ", cost per night: $" +
+            cost.substring(0, cost.length() - 2) + "." +
+            cost.substring((cost.length() - 2), cost.length());
   };
 
-  public String getRoomNumber() { return roomNumber; };
+  public String getRoomNumber() { return roomNumber; }
+
+  public int getCost() { return cost; }
 }
